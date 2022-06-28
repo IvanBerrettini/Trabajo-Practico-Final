@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Trabajo_Practico_Final.Presentacion;
 
 namespace Trabajo_Practico_Final
 {
@@ -16,7 +17,7 @@ namespace Trabajo_Practico_Final
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frm_principal());
         }
     }
 }
