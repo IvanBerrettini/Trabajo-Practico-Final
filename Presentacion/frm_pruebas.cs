@@ -29,5 +29,10 @@ namespace Trabajo_Practico_Final.Presentacion
             rungeKutta.integracionNumerica();
             dgv_runge_kutta.DataSource = rungeKutta.Tabla;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace Trabajo_Practico_Final.Presentacion
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_runge_kutta = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_runge_kutta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,11 +88,22 @@ namespace Trabajo_Practico_Final.Presentacion
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1165, 494);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 66;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // frm_pruebas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 642);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgv_runge_kutta);
             this.Name = "frm_pruebas";
@@ -106,5 +118,6 @@ namespace Trabajo_Practico_Final.Presentacion
 
         private System.Windows.Forms.DataGridView dgv_runge_kutta;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
