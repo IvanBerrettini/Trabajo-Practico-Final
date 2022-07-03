@@ -16,6 +16,9 @@ namespace Trabajo_Practico_Final.Modelo
         private Random generadorRND;
         private RungeKutta rungeKutta;
         private double tiempoTirada;
+        private int indicePrimerNoDestruido = -1;
+        private bool mostrar = false;
+        private List<string> listaPersonasDestruidas;
 
         public void realizarSimulacion(int totalMinutos, int minutoDesde, int totalFilas, double limiteA, double limiteB, int tiempoEntreSuspensiones, int tiempoEntreLimpiezas, int duracionLimpieza)
         {
@@ -26,6 +29,7 @@ namespace Trabajo_Practico_Final.Modelo
             this.generadorRND = new Random();
             this.rungeKutta = new RungeKutta();
             this.tiempoTirada = rungeKutta.integracionNumerica(); //calculo del tiempo de tirada (por unica vez)
+            this.listaPersonasDestruidas = new List<string> { };
 
             Fila fila = new Fila();
             Fila filaAnterior;
@@ -44,14 +48,12 @@ namespace Trabajo_Practico_Final.Modelo
             //fila.RndLlegada = 0.95; //BORRAR
             fila.TiempoEntreLlegadas = limiteA + fila.RndLlegada * (limiteB - limiteA);
             fila.ProximaLlegada = fila.Reloj + fila.TiempoEntreLlegadas;
-            //fila.ProximaSuspension = fila.Reloj + tiempoEntreSuspensiones;
-            fila.ProximaSuspension = 5; //BORRAR
+            fila.ProximaSuspension = fila.Reloj + tiempoEntreSuspensiones;
             fila.ProximaLimpieza = fila.Reloj + tiempoEntreLimpiezas;
 
             agregarFila(fila);
             filaAnterior = fila.copiarFila();
 
-            //while (fila.Reloj <= totalMinutos)
             while (fila.Reloj <= this.totalMinutos)
             {
                 indiceProximaPersonaATerminar = filaAnterior.proximaPersonaATerminar();
@@ -96,7 +98,7 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.RndLlegada = 0;
                         fila.TiempoEntreLlegadas = 0;
                         fila.TiempoTirada = 0;
-                        fila.PersonasDeslizandose[indiceProximaPersonaATerminar].Estado = "XXXX";
+                        fila.PersonasDeslizandose[indiceProximaPersonaATerminar].Destruido = true;
                         fila.PersonasDeslizandose.RemoveAt(indiceProximaPersonaATerminar); //actualizar lista de personas deslizandose
                         fila.FinTiradas = armarCadenaTiradas(fila.PersonasDeslizandose);
 
@@ -169,6 +171,7 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.RndLlegada = 0;
                         fila.TiempoEntreLlegadas = 0;
                         fila.TiempoTirada = this.tiempoTirada;
+
                         for (int i = 0; i < fila.Personas.Count; i++)
                         {
                             if (fila.Personas[i].Estado == "ET")
@@ -192,7 +195,10 @@ namespace Trabajo_Practico_Final.Modelo
 
                 if (fila.Reloj >= this.minutoDesde && contadorFilas <= this.totalFilas)
                 {
-                    agregarFila(fila, contadorLlegadas);
+                    if (indicePrimerNoDestruido == -1)
+                        indicePrimerNoDestruido = obtenerPrimerNoDestruido(fila.Personas); //primer persona a mostrar en la tabla
+
+                    agregarFila(fila, indicePrimerNoDestruido);
                     contadorFilas++;
                 }
             }
@@ -208,7 +214,7 @@ namespace Trabajo_Practico_Final.Modelo
             else return "fin_limpieza";
         }
 
-        private void agregarFila(Fila fila, int indice = -1)
+        private void agregarFila(Fila fila, int indicePrimerNoDestruido = -1)
         {
             List<string> listaFila = new List<string> {
                 fila.Evento,
@@ -228,44 +234,40 @@ namespace Trabajo_Practico_Final.Modelo
                 (Math.Truncate(1000 * fila.EsperaMaximaCola) / 1000).ToString()
             };
 
-            if (indice != -1)
+            if (!mostrar)
             {
-                fila.PersonasMostrar.Add(fila.Personas[indice - 1]); //actualizar lista de personas para mostrar
+                if (this.indicePrimerNoDestruido != -1)
+                {
+                    for (int i = this.indicePrimerNoDestruido; i < fila.Personas.Count; i++)
+                    {
+                        this.tabla.Columns.Add("Persona " + fila.Personas[i].Id.ToString() + " Estado|HoraLlegada|EsperaEnCola");
+                        listaFila.Add(fila.Personas[i].armarStringPersona());
+                        this.mostrar = true;
+                    }
+                }
             }
-            
-            if (fila.Evento.Contains("llegada_persona"))
+            else
             {
-                this.tabla.Columns.Add("Persona " + indice.ToString() + " Estado|HoraLlegada|EsperaEnCola");
-            }
-            
-
-            
-
-            this.tabla.Rows.Add(listaFila.ToArray());
-        }
-        /*
-        private List<string> armarListaPersonas(Fila fila)
-        {
-            if (fila.Reloj >= this.minutoDesde)
-            {
-                
                 if (fila.Evento.Contains("llegada_persona"))
                 {
-                    this.tabla.Columns.Add("Persona " + indice.ToString() + " Estado|HoraLlegada|EsperaEnCola");
+                    this.tabla.Columns.Add("Persona " + fila.Personas[fila.Personas.Count - 1].Id.ToString() + " Estado|HoraLlegada|EsperaEnCola");
                 }
-                for (int i = 0; i < fila.Personas.Count; i++)
-                {
-                    listaFila.Add(fila.Personas[i].Estado + "|" +
-                        beautify(fila.Personas[i].HoraLlegada) + "|" +
-                        beautify(fila.Personas[i].EsperaEnCola)
-                        );
-                }
-            }
-            if ()
-            {
 
+                listaFila.Concat(this.listaPersonasDestruidas);
+
+                for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)
+                {
+                    listaFila.Add(fila.Personas[i].armarStringPersona());
+
+                    if (fila.Personas[i].Destruido)
+                    {
+                        this.listaPersonasDestruidas.Add("");
+                        indicePrimerNoDestruido++;
+                    }
+                }
             }
-        }*/
+            this.tabla.Rows.Add(listaFila.ToArray());
+        }
 
         private string armarCadenaTiradas(List<Persona> personas)
         {
@@ -275,6 +277,16 @@ namespace Trabajo_Practico_Final.Modelo
                 tiradas += "(" + personas[i].Id + ") " + beautify(personas[i].FinTirada) + "     ";
             }
             return tiradas;
+        }
+
+        private int obtenerPrimerNoDestruido(List<Persona> personas)
+        {
+            for (int i = 0; i < personas.Count; i++)
+            {
+                if (personas[i].Destruido == false)
+                    return i;
+            }
+            return -1;
         }
 
         private void crearTabla()
@@ -333,7 +345,6 @@ namespace Trabajo_Practico_Final.Modelo
         private double esperaMaximaCola;
         private List<Persona> personas;
         private List<Persona> personasDeslizandose;
-        private List<Persona> personasMostrar;
 
         public Fila()
         {
@@ -347,7 +358,6 @@ namespace Trabajo_Practico_Final.Modelo
             this.esperaMaximaCola = 0;
             this.personas = new List<Persona> {};
             this.personasDeslizandose = new List<Persona> { };
-            this.personasMostrar = new List<Persona> { };
         }
         
         public int proximaPersonaATerminar()
@@ -392,22 +402,15 @@ namespace Trabajo_Practico_Final.Modelo
             filaClon.personas = new List<Persona> { };
             for (int i = 0; i < this.personas.Count; i++)
             {
-                Persona personaClon = new Persona(this.personas[i].Id, this.personas[i].Estado, this.personas[i].HoraLlegada, this.personas[i].EsperaEnCola, this.personas[i].FinTirada);
+                Persona personaClon = new Persona(this.personas[i].Id, this.personas[i].Estado, this.personas[i].HoraLlegada, this.personas[i].EsperaEnCola, this.personas[i].FinTirada, this.personas[i].Destruido);
                 filaClon.personas.Add(personaClon);
             }
             
             filaClon.personasDeslizandose = new List<Persona> { };
             for (int i = 0; i < this.personasDeslizandose.Count; i++)
             {
-                Persona personaClon = new Persona(this.personasDeslizandose[i].Id, this.personasDeslizandose[i].Estado, this.personasDeslizandose[i].HoraLlegada, this.personasDeslizandose[i].EsperaEnCola, this.personasDeslizandose[i].FinTirada);
+                Persona personaClon = new Persona(this.personasDeslizandose[i].Id, this.personasDeslizandose[i].Estado, this.personasDeslizandose[i].HoraLlegada, this.personasDeslizandose[i].EsperaEnCola, this.personasDeslizandose[i].FinTirada, this.personasDeslizandose[i].Destruido);
                 filaClon.personasDeslizandose.Add(personaClon);
-            }
-
-            filaClon.personasMostrar = new List<Persona> { };
-            for (int i = 0; i < this.personasMostrar.Count; i++)
-            {
-                Persona personaClon = new Persona(this.personasMostrar[i].Id, this.personasMostrar[i].Estado, this.personasMostrar[i].HoraLlegada, this.personasMostrar[i].EsperaEnCola, this.personasMostrar[i].FinTirada);
-                filaClon.personasMostrar.Add(personaClon);
             }
             return filaClon;
         }
@@ -429,6 +432,5 @@ namespace Trabajo_Practico_Final.Modelo
         public double EsperaMaximaCola { get => esperaMaximaCola; set => esperaMaximaCola = value; }
         internal List<Persona> Personas { get => personas; set => personas = value; }
         internal List<Persona> PersonasDeslizandose { get => personasDeslizandose; set => personasDeslizandose = value; }
-        internal List<Persona> PersonasMostrar { get => personasMostrar; set => personasMostrar = value; }
     }
 }
