@@ -32,7 +32,7 @@ namespace Trabajo_Practico_Final.Presentacion
             }
             if (nud_b.Value <= nud_a.Value)
             {
-                MessageBox.Show("Verifique el intervalo [A; B] correspondiente al tiempo entre llegadas de personas. 'B' debe ser mayor a 'A'.", "Generación de Valores", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Revise el intervalo [A; B] correspondiente al tiempo entre llegadas de personas. 'B' debe ser mayor a 'A'.", "Generación de Valores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             if (nud_tiempo_entre_susp.Value == 0)
@@ -76,28 +76,38 @@ namespace Trabajo_Practico_Final.Presentacion
 
         private void btn_generar_Click(object sender, EventArgs e)
         {
-            activarParametros(false);
-            validarParametros();
-            Simulacion simulacion = new Simulacion();
-            simulacion.realizarSimulacion((int)nud_total_minutos.Value, (int)nud_minuto_desde.Value, (int)nud_total_filas.Value, (double)nud_a.Value, (double)nud_b.Value, (int)nud_tiempo_entre_susp.Value, (int)nud_tiempo_entre_limp.Value, (int)nud_duracion_limp.Value);
-            dgv_simulacion.DataSource = simulacion.Tabla;
-            dgv_simulacion.Columns[0].Frozen = true;
-            dgv_simulacion.Columns[1].Frozen = true;
-
-            dgv_simulacion.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgv_simulacion.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            /*
-            for (int i = 0; i < dgv_simulacion.Rows.Count; i++)
+            if (validarParametros())
             {
-                dgv_simulacion.Rows[i].Cells[3].Style.BackColor = Color.Red;
+                Simulacion simulacion = new Simulacion();
+                simulacion.realizarSimulacion((int)nud_total_minutos.Value, (int)nud_minuto_desde.Value, (int)nud_total_filas.Value, (double)nud_a.Value, (double)nud_b.Value, (int)nud_tiempo_entre_susp.Value, (int)nud_tiempo_entre_limp.Value, (int)nud_duracion_limp.Value);
+                dgv_simulacion.DataSource = simulacion.Tabla;
+
+                //metricas
+                lbl_cola_max.Text = simulacion.ColaMaxima.ToString();
+                lbl_espera_max.Text = (Math.Truncate(1000 * simulacion.EsperaMaximaCola) / 1000).ToString();
+
+                //tabla runge kutta
+                dgv_runge_kutta.DataSource = simulacion.RungeKutta.Tabla;
+
+                //formateo de tabla
+                dgv_simulacion.Columns[0].Frozen = true;
+                dgv_simulacion.Columns[1].Frozen = true;
+                dgv_simulacion.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgv_simulacion.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                dgv_simulacion.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+                /*
+                for (int i = 0; i < dgv_simulacion.Rows.Count; i++)
+                {
+                    dgv_simulacion.Rows[i].Cells[3].Style.BackColor = Color.Red;
+                }
+                */
+                for (int i = 15; i < dgv_simulacion.Columns.Count; i++)
+                {
+                    dgv_simulacion.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+                activarParametros(false);
             }
-            */
-            for (int i = 15; i < dgv_simulacion.Columns.Count; i++)
-            {
-                dgv_simulacion.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            }
-            
         }
 
         private void btn_restablecer_Click(object sender, EventArgs e)

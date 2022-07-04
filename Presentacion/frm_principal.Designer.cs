@@ -32,6 +32,12 @@ namespace Trabajo_Practico_Final.Presentacion
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tab_simulacion = new System.Windows.Forms.TabPage();
+            this.tab_rk = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.gb_metricas = new System.Windows.Forms.GroupBox();
@@ -61,6 +67,11 @@ namespace Trabajo_Practico_Final.Presentacion
             this.btn_restablecer = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgv_simulacion = new System.Windows.Forms.DataGridView();
+            this.tab_info = new System.Windows.Forms.TabPage();
+            this.dgv_runge_kutta = new System.Windows.Forms.DataGridView();
+            this.tabControl1.SuspendLayout();
+            this.tab_simulacion.SuspendLayout();
+            this.tab_rk.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.gb_metricas.SuspendLayout();
@@ -75,7 +86,42 @@ namespace Trabajo_Practico_Final.Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.nud_a)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_runge_kutta)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tab_simulacion);
+            this.tabControl1.Controls.Add(this.tab_rk);
+            this.tabControl1.Controls.Add(this.tab_info);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1469, 670);
+            this.tabControl1.TabIndex = 0;
+            // 
+            // tab_simulacion
+            // 
+            this.tab_simulacion.Controls.Add(this.tableLayoutPanel1);
+            this.tab_simulacion.Location = new System.Drawing.Point(4, 25);
+            this.tab_simulacion.Name = "tab_simulacion";
+            this.tab_simulacion.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_simulacion.Size = new System.Drawing.Size(1461, 641);
+            this.tab_simulacion.TabIndex = 0;
+            this.tab_simulacion.Text = "Simulación";
+            this.tab_simulacion.UseVisualStyleBackColor = true;
+            // 
+            // tab_rk
+            // 
+            this.tab_rk.Controls.Add(this.dgv_runge_kutta);
+            this.tab_rk.Location = new System.Drawing.Point(4, 25);
+            this.tab_rk.Name = "tab_rk";
+            this.tab_rk.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_rk.Size = new System.Drawing.Size(1461, 641);
+            this.tab_rk.TabIndex = 1;
+            this.tab_rk.Text = "Runge Kutta";
+            this.tab_rk.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -85,13 +131,13 @@ namespace Trabajo_Practico_Final.Presentacion
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel4, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1469, 670);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1455, 635);
+            this.tableLayoutPanel1.TabIndex = 5;
             // 
             // panel2
             // 
@@ -102,7 +148,7 @@ namespace Trabajo_Practico_Final.Presentacion
             this.panel2.Location = new System.Drawing.Point(4, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(431, 662);
+            this.panel2.Size = new System.Drawing.Size(431, 627);
             this.panel2.TabIndex = 63;
             // 
             // gb_metricas
@@ -124,7 +170,7 @@ namespace Trabajo_Practico_Final.Presentacion
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 69);
+            this.label2.Location = new System.Drawing.Point(82, 69);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(228, 17);
@@ -134,7 +180,7 @@ namespace Trabajo_Practico_Final.Presentacion
             // lbl_espera_max
             // 
             this.lbl_espera_max.AutoSize = true;
-            this.lbl_espera_max.Location = new System.Drawing.Point(281, 69);
+            this.lbl_espera_max.Location = new System.Drawing.Point(318, 69);
             this.lbl_espera_max.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_espera_max.Name = "lbl_espera_max";
             this.lbl_espera_max.Size = new System.Drawing.Size(16, 17);
@@ -144,7 +190,7 @@ namespace Trabajo_Practico_Final.Presentacion
             // lbl_cola_max
             // 
             this.lbl_cola_max.AutoSize = true;
-            this.lbl_cola_max.Location = new System.Drawing.Point(281, 37);
+            this.lbl_cola_max.Location = new System.Drawing.Point(318, 37);
             this.lbl_cola_max.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_cola_max.Name = "lbl_cola_max";
             this.lbl_cola_max.Size = new System.Drawing.Size(16, 17);
@@ -154,7 +200,7 @@ namespace Trabajo_Practico_Final.Presentacion
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 37);
+            this.label1.Location = new System.Drawing.Point(58, 37);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(252, 17);
@@ -463,6 +509,7 @@ namespace Trabajo_Practico_Final.Presentacion
             // 
             // btn_restablecer
             // 
+            this.btn_restablecer.Enabled = false;
             this.btn_restablecer.Location = new System.Drawing.Point(8, 418);
             this.btn_restablecer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_restablecer.Name = "btn_restablecer";
@@ -481,7 +528,7 @@ namespace Trabajo_Practico_Final.Presentacion
             this.panel4.Location = new System.Drawing.Point(443, 2);
             this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1023, 666);
+            this.panel4.Size = new System.Drawing.Size(1009, 631);
             this.panel4.TabIndex = 67;
             // 
             // dgv_simulacion
@@ -516,23 +563,85 @@ namespace Trabajo_Practico_Final.Presentacion
             this.dgv_simulacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv_simulacion.Name = "dgv_simulacion";
             this.dgv_simulacion.ReadOnly = true;
+            this.dgv_simulacion.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgv_simulacion.RowHeadersVisible = false;
             this.dgv_simulacion.RowHeadersWidth = 51;
             this.dgv_simulacion.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgv_simulacion.RowTemplate.Height = 24;
             this.dgv_simulacion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_simulacion.Size = new System.Drawing.Size(1007, 640);
+            this.dgv_simulacion.ShowCellErrors = false;
+            this.dgv_simulacion.ShowCellToolTips = false;
+            this.dgv_simulacion.ShowEditingIcon = false;
+            this.dgv_simulacion.ShowRowErrors = false;
+            this.dgv_simulacion.Size = new System.Drawing.Size(993, 605);
             this.dgv_simulacion.TabIndex = 62;
+            // 
+            // tab_info
+            // 
+            this.tab_info.Location = new System.Drawing.Point(4, 25);
+            this.tab_info.Name = "tab_info";
+            this.tab_info.Size = new System.Drawing.Size(1461, 641);
+            this.tab_info.TabIndex = 2;
+            this.tab_info.Text = "Info";
+            this.tab_info.UseVisualStyleBackColor = true;
+            // 
+            // dgv_runge_kutta
+            // 
+            this.dgv_runge_kutta.AllowUserToAddRows = false;
+            this.dgv_runge_kutta.AllowUserToDeleteRows = false;
+            this.dgv_runge_kutta.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_runge_kutta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgv_runge_kutta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_runge_kutta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgv_runge_kutta.ColumnHeadersHeight = 80;
+            this.dgv_runge_kutta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_runge_kutta.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgv_runge_kutta.Location = new System.Drawing.Point(455, 14);
+            this.dgv_runge_kutta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgv_runge_kutta.Name = "dgv_runge_kutta";
+            this.dgv_runge_kutta.ReadOnly = true;
+            this.dgv_runge_kutta.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgv_runge_kutta.RowHeadersVisible = false;
+            this.dgv_runge_kutta.RowHeadersWidth = 51;
+            this.dgv_runge_kutta.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgv_runge_kutta.RowTemplate.Height = 24;
+            this.dgv_runge_kutta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_runge_kutta.ShowCellErrors = false;
+            this.dgv_runge_kutta.ShowCellToolTips = false;
+            this.dgv_runge_kutta.ShowEditingIcon = false;
+            this.dgv_runge_kutta.ShowRowErrors = false;
+            this.dgv_runge_kutta.Size = new System.Drawing.Size(993, 605);
+            this.dgv_runge_kutta.TabIndex = 63;
             // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1469, 670);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tabControl1);
             this.Name = "frm_principal";
             this.Text = "Trabajo Práctico 7";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.tabControl1.ResumeLayout(false);
+            this.tab_simulacion.ResumeLayout(false);
+            this.tab_rk.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.gb_metricas.ResumeLayout(false);
@@ -549,12 +658,15 @@ namespace Trabajo_Practico_Final.Presentacion
             ((System.ComponentModel.ISupportInitialize)(this.nud_a)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_runge_kutta)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tab_simulacion;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox gb_metricas;
@@ -563,6 +675,9 @@ namespace Trabajo_Practico_Final.Presentacion
         private System.Windows.Forms.Label lbl_cola_max;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gb_parametros;
+        private System.Windows.Forms.NumericUpDown nud_tiempo_entre_limp;
+        private System.Windows.Forms.Label lbl_tiempo_entre_limp;
+        private System.Windows.Forms.Label lbl_b;
         private System.Windows.Forms.NumericUpDown nud_total_filas;
         private System.Windows.Forms.Label lbl_mostrar_hasta;
         private System.Windows.Forms.NumericUpDown nud_minuto_desde;
@@ -581,8 +696,8 @@ namespace Trabajo_Practico_Final.Presentacion
         private System.Windows.Forms.Button btn_restablecer;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dgv_simulacion;
-        private System.Windows.Forms.Label lbl_b;
-        private System.Windows.Forms.NumericUpDown nud_tiempo_entre_limp;
-        private System.Windows.Forms.Label lbl_tiempo_entre_limp;
+        private System.Windows.Forms.TabPage tab_rk;
+        private System.Windows.Forms.DataGridView dgv_runge_kutta;
+        private System.Windows.Forms.TabPage tab_info;
     }
 }
