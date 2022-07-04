@@ -99,6 +99,8 @@ namespace Trabajo_Practico_Final.Presentacion
                 dgv_simulacion.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 dgv_simulacion.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv_simulacion.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgv_simulacion.Columns[15].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgv_simulacion.Columns[15].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                 foreach (DataGridViewColumn dgvc in dgv_simulacion.Columns)
                     dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;

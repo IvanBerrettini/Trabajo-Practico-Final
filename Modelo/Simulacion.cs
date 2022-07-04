@@ -18,7 +18,6 @@ namespace Trabajo_Practico_Final.Modelo
         private double tiempoTirada;
         private int indicePrimerNoDestruido;
         private bool mostrar = false;
-        private List<string> listaPersonasDestruidas;
         private int colaMaxima;
         private double esperaMaximaCola;
 
@@ -32,7 +31,6 @@ namespace Trabajo_Practico_Final.Modelo
             this.rungeKutta = new RungeKutta();
             this.tiempoTirada = rungeKutta.integracionNumerica(); //calculo del tiempo de tirada (por unica vez)
             this.indicePrimerNoDestruido = -1;
-            this.listaPersonasDestruidas = new List<string> { };
 
             Fila fila = new Fila();
             Fila filaAnterior;
@@ -276,38 +274,17 @@ namespace Trabajo_Practico_Final.Modelo
                 (Math.Truncate(1000 * fila.EsperaMaximaCola) / 1000).ToString()
             };
 
-            if (!mostrar)
+            StringBuilder cadenaPersonas = new StringBuilder("");
+            if (this.indicePrimerNoDestruido != -1)
             {
-                if (this.indicePrimerNoDestruido != -1)
+                for (int i = this.indicePrimerNoDestruido; i < fila.Personas.Count; i++)
                 {
-                    for (int i = this.indicePrimerNoDestruido; i < fila.Personas.Count; i++)
-                    {
-                        this.tabla.Columns.Add("Persona " + fila.Personas[i].Id.ToString() + " |Estado| |HoraLlegada| |EsperaEnCola|");
-                        listaFila.Add(fila.Personas[i].armarStringPersona());
-                        this.mostrar = true;
-                    }
+                    if (!fila.Personas[i].Destruido)
+                        cadenaPersonas.Append("{" + fila.Personas[i].armarStringPersona() + "}".PadRight(10, ' '));
                 }
             }
-            else
-            {
-                if (fila.Evento.Contains("llegada_persona"))
-                {
-                    this.tabla.Columns.Add("Persona " + fila.Personas[fila.Personas.Count - 1].Id.ToString() + " |Estado| |HoraLlegada| |EsperaEnCola|");
-                }
+            listaFila.Add(cadenaPersonas.ToString());
 
-                listaFila = listaFila.Concat(this.listaPersonasDestruidas).ToList();
-
-                for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)
-                {
-                    listaFila.Add(fila.Personas[i].armarStringPersona());
-
-                    if (fila.Personas[i].Destruido)
-                    {
-                        this.listaPersonasDestruidas.Add("");
-                        this.indicePrimerNoDestruido++;
-                    }
-                }
-            }
             this.tabla.Rows.Add(listaFila.ToArray());
         }
 
@@ -349,7 +326,8 @@ namespace Trabajo_Practico_Final.Modelo
                 "Estado Alfombra",
                 "Cola Alfombra",
                 "Cola máxima Alfombra",
-                "Espera máxima en cola"
+                "Espera máxima en cola",
+                "Personas"
             };
 
             for (int i = 0; i < columnas.Length; i++)
