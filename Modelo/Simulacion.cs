@@ -16,7 +16,7 @@ namespace Trabajo_Practico_Final.Modelo
         private Random generadorRND;
         private RungeKutta rungeKutta;
         private double tiempoTirada;
-        private int indicePrimerNoDestruido = -1;
+        private int indicePrimerNoDestruido;
         private bool mostrar = false;
         private List<string> listaPersonasDestruidas;
         private int colaMaxima;
@@ -31,6 +31,7 @@ namespace Trabajo_Practico_Final.Modelo
             this.generadorRND = new Random();
             this.rungeKutta = new RungeKutta();
             this.tiempoTirada = rungeKutta.integracionNumerica(); //calculo del tiempo de tirada (por unica vez)
+            this.indicePrimerNoDestruido = -1;
             this.listaPersonasDestruidas = new List<string> { };
 
             Fila fila = new Fila();
@@ -47,7 +48,6 @@ namespace Trabajo_Practico_Final.Modelo
             //inicializacion
             fila.Evento = "inicializacion";
             fila.RndLlegada = generadorRND.NextDouble();
-            //fila.RndLlegada = 0.95; //BORRAR
             fila.TiempoEntreLlegadas = limiteA + fila.RndLlegada * (limiteB - limiteA);
             fila.ProximaLlegada = fila.Reloj + fila.TiempoEntreLlegadas;
             fila.ProximaSuspension = fila.Reloj + tiempoEntreSuspensiones;
@@ -72,7 +72,6 @@ namespace Trabajo_Practico_Final.Modelo
                         contadorLlegadas++;
                         fila.Reloj = filaAnterior.ProximaLlegada;
                         fila.RndLlegada = generadorRND.NextDouble();
-                        //fila.RndLlegada = 0.12; //BORRAR
                         fila.TiempoEntreLlegadas = limiteA + fila.RndLlegada * (limiteB - limiteA);
                         fila.ProximaLlegada = fila.Reloj + fila.TiempoEntreLlegadas;
 
@@ -113,7 +112,6 @@ namespace Trabajo_Practico_Final.Modelo
                                 fila.Personas[i].EsperaEnCola = -1;
                             }
                         }
-
                         break;
 
                     case "suspension":
@@ -135,7 +133,6 @@ namespace Trabajo_Practico_Final.Modelo
 
                         fila.FinSuspension = tiempoUltimaPersonaEnTerminar;
                         fila.EstadoAlfombra = "Suspendida";
-
                         break;
 
                     case "fin_suspension":
@@ -172,7 +169,6 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.FinSuspension = double.MaxValue;
                         fila.EstadoAlfombra = "Disponible";
                         fila.Cola = 0;
-
                         break;
 
                     case "limpieza":
@@ -193,7 +189,6 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.ProximaSuspension = fila.FinLimpieza + tiempoEntreSuspensiones; //si se encuentra en limpieza, se posponen la suspension
 
                         fila.EstadoAlfombra = "Suspendida";
-
                         break;
 
                     case "fin_limpieza":
@@ -230,7 +225,6 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.FinLimpieza = double.MaxValue;
                         fila.EstadoAlfombra = "Disponible";
                         fila.Cola = 0;
-
                         break;
 
                     default:
@@ -374,6 +368,7 @@ namespace Trabajo_Practico_Final.Modelo
         internal RungeKutta RungeKutta { get => rungeKutta; set => rungeKutta = value; }
         public int ColaMaxima { get => colaMaxima; set => colaMaxima = value; }
         public double EsperaMaximaCola { get => esperaMaximaCola; set => esperaMaximaCola = value; }
+        public double TiempoTirada { get => tiempoTirada; set => tiempoTirada = value; }
     }
 
     internal class Fila

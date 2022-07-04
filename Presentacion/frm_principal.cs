@@ -65,6 +65,8 @@ namespace Trabajo_Practico_Final.Presentacion
             if (activar)
             {
                 dgv_simulacion.Columns.Clear();
+                tab_rk.Show();
+                dgv_runge_kutta.Columns.Clear();
             }
         }
 
@@ -81,13 +83,15 @@ namespace Trabajo_Practico_Final.Presentacion
                 Simulacion simulacion = new Simulacion();
                 simulacion.realizarSimulacion((int)nud_total_minutos.Value, (int)nud_minuto_desde.Value, (int)nud_total_filas.Value, (double)nud_a.Value, (double)nud_b.Value, (int)nud_tiempo_entre_susp.Value, (int)nud_tiempo_entre_limp.Value, (int)nud_duracion_limp.Value);
                 dgv_simulacion.DataSource = simulacion.Tabla;
+                activarParametros(false);
 
                 //metricas
                 lbl_cola_max.Text = simulacion.ColaMaxima.ToString();
-                lbl_espera_max.Text = (Math.Truncate(1000 * simulacion.EsperaMaximaCola) / 1000).ToString();
+                lbl_espera_max.Text = (Math.Truncate(1000 * simulacion.EsperaMaximaCola) / 1000).ToString() + " min";
 
                 //tabla runge kutta
                 dgv_runge_kutta.DataSource = simulacion.RungeKutta.Tabla;
+                lbl_tiempo.Text = simulacion.TiempoTirada.ToString() + "  min";
 
                 //formateo de tabla
                 dgv_simulacion.Columns[0].Frozen = true;
@@ -96,17 +100,17 @@ namespace Trabajo_Practico_Final.Presentacion
                 dgv_simulacion.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgv_simulacion.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
+                foreach (DataGridViewColumn dgvc in dgv_simulacion.Columns)
+                    dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
+
+                tab_rk.Show();
+                dgv_runge_kutta.Rows[dgv_runge_kutta.Rows.Count-1].Cells[0].Style.BackColor = Color.LightGreen;
+                
                 /*
-                for (int i = 0; i < dgv_simulacion.Rows.Count; i++)
-                {
-                    dgv_simulacion.Rows[i].Cells[3].Style.BackColor = Color.Red;
-                }
-                */
                 for (int i = 15; i < dgv_simulacion.Columns.Count; i++)
                 {
                     dgv_simulacion.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-                activarParametros(false);
+                }*/
             }
         }
 
