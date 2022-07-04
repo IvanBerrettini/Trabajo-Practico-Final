@@ -78,6 +78,8 @@ namespace Trabajo_Practico_Final.Modelo
                         if (fila.EstadoAlfombra == "Suspendida")
                         {
                             fila.Cola++;
+                            if (fila.Cola >= filaAnterior.ColaMaxima)
+                                fila.ColaMaxima = fila.Cola;
                             persona = new Persona(fila.Reloj, contadorLlegadas);
                             fila.Personas.Add(persona);
                         }
@@ -102,6 +104,11 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.PersonasDeslizandose.RemoveAt(indiceProximaPersonaATerminar); //actualizar lista de personas deslizandose
                         fila.FinTiradas = armarCadenaTiradas(fila.PersonasDeslizandose);
 
+                        for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)//BORRAR
+                        {
+                            fila.Personas[i].EsperaEnCola = -1;
+                        }
+
                         break;
 
                     case "suspension":
@@ -109,7 +116,7 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.Reloj = filaAnterior.ProximaSuspension;
                         fila.RndLlegada = 0;
                         fila.TiempoEntreLlegadas = 0;
-
+                        fila.TiempoTirada = 0;
                         fila.ProximaSuspension = fila.Reloj + tiempoEntreSuspensiones;
 
                         if (indiceProximaPersonaATerminar != -1)
@@ -132,10 +139,11 @@ namespace Trabajo_Practico_Final.Modelo
                             if (fila.Personas[i].Estado == "ET")
                             {
                                 fila.PersonasDeslizandose.Add(fila.Personas[i]);
-                                fila.Personas[i].Estado = "D";
+                                fila.Personas[i].Estado = "D ";
                                 fila.Personas[i].FinTirada = fila.Reloj + this.tiempoTirada;
                             }
                         }
+                        fila.TiempoTirada = 0;
                         fila.FinTiradas = armarCadenaTiradas(fila.PersonasDeslizandose);
                         fila.FinSuspension = double.MaxValue;
                         fila.EstadoAlfombra = "Disponible";
@@ -177,8 +185,22 @@ namespace Trabajo_Practico_Final.Modelo
                             if (fila.Personas[i].Estado == "ET")
                             {
                                 fila.PersonasDeslizandose.Add(fila.Personas[i]);
-                                fila.Personas[i].Estado = "D";
+                                fila.Personas[i].Estado = "D ";
+                                fila.Personas[i].HoraLlegada = -1;
+                                fila.Personas[i].EsperaEnCola = fila.Reloj - filaAnterior.Personas[i].HoraLlegada;
                                 fila.Personas[i].FinTirada = fila.Reloj + this.tiempoTirada;
+                            }
+                            if (fila.Personas[i].EsperaEnCola != -1)
+                            {
+                                if (fila.EsperaMaximaCola != 0)
+                                {
+                                    if (fila.Personas[i].EsperaEnCola >= fila.EsperaMaximaCola)
+                                        fila.EsperaMaximaCola = fila.Personas[i].EsperaEnCola;
+                                }
+                                else
+                                {
+                                    fila.EsperaMaximaCola = fila.Personas[i].EsperaEnCola;
+                                }
                             }
                         }
                         fila.FinTiradas = armarCadenaTiradas(fila.PersonasDeslizandose);
@@ -188,6 +210,7 @@ namespace Trabajo_Practico_Final.Modelo
 
 
                         break;
+
                     default:
                         break;
                 }
@@ -240,7 +263,7 @@ namespace Trabajo_Practico_Final.Modelo
                 {
                     for (int i = this.indicePrimerNoDestruido; i < fila.Personas.Count; i++)
                     {
-                        this.tabla.Columns.Add("Persona " + fila.Personas[i].Id.ToString() + " Estado|HoraLlegada|EsperaEnCola");
+                        this.tabla.Columns.Add("Persona " + fila.Personas[i].Id.ToString() + " |Estado| |HoraLlegada| |EsperaEnCola|");
                         listaFila.Add(fila.Personas[i].armarStringPersona());
                         this.mostrar = true;
                     }
@@ -250,10 +273,10 @@ namespace Trabajo_Practico_Final.Modelo
             {
                 if (fila.Evento.Contains("llegada_persona"))
                 {
-                    this.tabla.Columns.Add("Persona " + fila.Personas[fila.Personas.Count - 1].Id.ToString() + " Estado|HoraLlegada|EsperaEnCola");
+                    this.tabla.Columns.Add("Persona " + fila.Personas[fila.Personas.Count - 1].Id.ToString() + " |Estado| |HoraLlegada| |EsperaEnCola|");
                 }
 
-                listaFila.Concat(this.listaPersonasDestruidas);
+                listaFila = listaFila.Concat(this.listaPersonasDestruidas).ToList();
 
                 for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)
                 {
@@ -262,7 +285,7 @@ namespace Trabajo_Practico_Final.Modelo
                     if (fila.Personas[i].Destruido)
                     {
                         this.listaPersonasDestruidas.Add("");
-                        indicePrimerNoDestruido++;
+                        this.indicePrimerNoDestruido++;
                     }
                 }
             }

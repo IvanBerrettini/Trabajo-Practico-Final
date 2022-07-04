@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelo\Alfombra.cs" />
     <Compile Include="Modelo\Persona.cs" />
     <Compile Include="Modelo\RungeKutta.cs" />
     <Compile Include="Modelo\Simulacion.cs" />

@@ -48,6 +48,26 @@ namespace Trabajo_Practico_Final.Presentacion
             return true;
         }
 
+        private void activarParametros(bool activar)
+        {
+            nud_total_minutos.Enabled = activar;
+            nud_minuto_desde.Enabled = activar;
+            nud_total_filas.Enabled = activar;
+            nud_a.Enabled = activar;
+            nud_b.Enabled = activar;
+            nud_tiempo_entre_susp.Enabled = activar;
+            nud_tiempo_entre_limp.Enabled = activar;
+            nud_duracion_limp.Enabled = activar;
+            btn_generar.Enabled = activar;
+            btn_restablecer.Enabled = !activar;
+            gb_metricas.Visible = !activar;
+            
+            if (activar)
+            {
+                dgv_simulacion.Columns.Clear();
+            }
+        }
+
         private void numActive(object sender, EventArgs e)
         {
             NumericUpDown clickedNumeric = (NumericUpDown)sender;
@@ -56,6 +76,7 @@ namespace Trabajo_Practico_Final.Presentacion
 
         private void btn_generar_Click(object sender, EventArgs e)
         {
+            activarParametros(false);
             validarParametros();
             Simulacion simulacion = new Simulacion();
             simulacion.realizarSimulacion((int)nud_total_minutos.Value, (int)nud_minuto_desde.Value, (int)nud_total_filas.Value, (double)nud_a.Value, (double)nud_b.Value, (int)nud_tiempo_entre_susp.Value, (int)nud_tiempo_entre_limp.Value, (int)nud_duracion_limp.Value);
@@ -63,13 +84,25 @@ namespace Trabajo_Practico_Final.Presentacion
             dgv_simulacion.Columns[0].Frozen = true;
             dgv_simulacion.Columns[1].Frozen = true;
 
+            dgv_simulacion.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv_simulacion.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
             /*
             for (int i = 0; i < dgv_simulacion.Rows.Count; i++)
             {
                 dgv_simulacion.Rows[i].Cells[3].Style.BackColor = Color.Red;
             }
             */
+            for (int i = 15; i < dgv_simulacion.Columns.Count; i++)
+            {
+                dgv_simulacion.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+            
+        }
 
+        private void btn_restablecer_Click(object sender, EventArgs e)
+        {
+            activarParametros(true);
         }
     }
 }
