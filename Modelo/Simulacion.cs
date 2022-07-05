@@ -64,6 +64,15 @@ namespace Trabajo_Practico_Final.Modelo
                 else
                     tiempoProximaPersonaATerminar = filaAnterior.PersonasDeslizandose[indiceProximaPersonaATerminar].FinTirada;
 
+                //borrar el tiempo de espera en cola a cada persona que esta deslizandose (ya no lo necesito)
+                if (indicePrimerNoDestruido != -1 && (filaAnterior.Evento == "fin_suspension" || filaAnterior.Evento == "fin_limpieza"))
+                {
+                    for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)
+                    {
+                        fila.Personas[i].EsperaEnCola = -1;
+                    }
+                }
+
                 proximoEvento = eventoProximo(filaAnterior.ProximaLlegada, tiempoProximaPersonaATerminar, filaAnterior.ProximaSuspension, filaAnterior.FinSuspension, filaAnterior.ProximaLimpieza, filaAnterior.FinLimpieza);
 
                 switch (proximoEvento)
@@ -104,14 +113,7 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.PersonasDeslizandose[indiceProximaPersonaATerminar].Destruido = true;
                         fila.PersonasDeslizandose.RemoveAt(indiceProximaPersonaATerminar); //actualizar lista de personas deslizandose
                         fila.FinTiradas = armarCadenaTiradas(fila.PersonasDeslizandose);
-                        
-                        if (indicePrimerNoDestruido != -1 && (filaAnterior.Evento == "fin_suspension" || filaAnterior.Evento == "fin_limpieza"))
-                        {
-                            for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)
-                            {
-                                fila.Personas[i].EsperaEnCola = -1;
-                            }
-                        }
+
                         break;
 
                     case "suspension":
@@ -404,41 +406,20 @@ namespace Trabajo_Practico_Final.Modelo
             this.personas = new List<Persona> {};
             this.personasDeslizandose = new List<Persona> { };
         }
-        
+
         public int proximaPersonaATerminar()
         {
-            int indice = -1;
-            for (int i = 0; i < personasDeslizandose.Count; i++)
-            {
-                if (indice == -1)
-                {
-                    indice = 0;
-                    continue;
-                }
-                if (personasDeslizandose[indice].FinTirada > personasDeslizandose[i].FinTirada)
-                {
-                    indice = i;
-                }
-            }
-            return indice;
+            if (personasDeslizandose.Count != 0)
+                return 0;
+            return -1;
         }
 
         public int ultimaPersonaEnTerminar()
         {
-            int indice = -1;
-            for (int i = 0; i < personasDeslizandose.Count; i++)
-            {
-                if (indice == -1)
-                {
-                    indice = 0;
-                    continue;
-                }
-                if (personasDeslizandose[indice].FinTirada < personasDeslizandose[i].FinTirada)
-                {
-                    indice = i;
-                }
-            }
-            return indice;
+            int indice = personasDeslizandose.Count;
+            if (indice != 0)
+                return indice - 1;
+            return -1;
         }
 
         public Fila copiarFila()
