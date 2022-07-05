@@ -116,6 +116,7 @@ namespace Trabajo_Practico_Final.Presentacion
                 dgv_runge_kutta.Rows[dgv_runge_kutta.Rows.Count - 1].Cells[1].Style.BackColor = Color.LightGreen;
 
                 /*
+                //ajustar las columnas de personas de acuerdo al contenido
                 for (int i = 15; i < dgv_simulacion.Columns.Count; i++)
                 {
                     dgv_simulacion.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
