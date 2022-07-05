@@ -11,13 +11,15 @@ namespace Trabajo_Practico_Final.Modelo
     {
         private double h;
         private DataTable tabla;
+        private double tiempo;
+        private double longitud;
 
         public RungeKutta()
         {
             this.h = 0.01;
         }
 
-        public double integracionNumerica()
+        public void integracionNumerica()
         {
             Fila fila = new Fila();
             crearTabla();
@@ -40,7 +42,8 @@ namespace Trabajo_Practico_Final.Modelo
 
             } while (fila.VarDependiente <= 100);
 
-            return fila.Tiempo;
+            this.tiempo = fila.Tiempo;
+            this.longitud = fila.VarDependiente;
         }
 
         public double ecuacionDiferencial(double y)
@@ -65,6 +68,8 @@ namespace Trabajo_Practico_Final.Modelo
         }
 
         public DataTable Tabla { get => tabla; set => tabla = value; }
+        public double Tiempo { get => tiempo; set => tiempo = value; }
+        public double Longitud { get => longitud; set => longitud = value; }
 
         internal class Fila
         {

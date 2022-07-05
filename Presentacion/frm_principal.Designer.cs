@@ -73,7 +73,16 @@ namespace Trabajo_Practico_Final.Presentacion
             this.dgv_runge_kutta = new System.Windows.Forms.DataGridView();
             this.tab_info = new System.Windows.Forms.TabPage();
             this.lbl_enunciado = new System.Windows.Forms.Label();
+            this.lbl_longitud = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_h = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbl_tiempo_inicial = new System.Windows.Forms.Label();
+            this.lbl_longitud_inicial = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tab_simulacion.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -93,7 +102,9 @@ namespace Trabajo_Practico_Final.Presentacion
             this.tab_rk.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_runge_kutta)).BeginInit();
             this.tab_info.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -564,9 +575,7 @@ namespace Trabajo_Practico_Final.Presentacion
             // 
             // tab_rk
             // 
-            this.tab_rk.Controls.Add(this.lbl_tiempo);
-            this.tab_rk.Controls.Add(this.label4);
-            this.tab_rk.Controls.Add(this.label3);
+            this.tab_rk.Controls.Add(this.groupBox1);
             this.tab_rk.Controls.Add(this.dgv_runge_kutta);
             this.tab_rk.Location = new System.Drawing.Point(4, 25);
             this.tab_rk.Name = "tab_rk";
@@ -579,32 +588,32 @@ namespace Trabajo_Practico_Final.Presentacion
             // lbl_tiempo
             // 
             this.lbl_tiempo.AutoSize = true;
-            this.lbl_tiempo.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tiempo.Location = new System.Drawing.Point(437, 104);
+            this.lbl_tiempo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tiempo.Location = new System.Drawing.Point(362, 327);
             this.lbl_tiempo.Name = "lbl_tiempo";
-            this.lbl_tiempo.Size = new System.Drawing.Size(15, 19);
+            this.lbl_tiempo.Size = new System.Drawing.Size(13, 18);
             this.lbl_tiempo.TabIndex = 66;
             this.lbl_tiempo.Text = "-";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(18, 104);
+            this.label4.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(110, 327);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(364, 19);
+            this.label4.Size = new System.Drawing.Size(210, 18);
             this.label4.TabIndex = 65;
-            this.label4.Text = "Tiempo que demora cada persona en deslizarse:";
+            this.label4.Text = "Tiempo en deslizarse final (t):";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(160, 65);
+            this.label3.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(88, 279);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(304, 19);
+            this.label3.Size = new System.Drawing.Size(232, 18);
             this.label3.TabIndex = 64;
-            this.label3.Text = "Longitud de la alfombra mágica: 100 mts";
+            this.label3.Text = "Longitud de la alfombra final (X):";
             // 
             // dgv_runge_kutta
             // 
@@ -673,15 +682,115 @@ namespace Trabajo_Practico_Final.Presentacion
             this.lbl_enunciado.TabIndex = 2;
             this.lbl_enunciado.Text = "Enunciado Ejercicio 229:";
             // 
+            // lbl_longitud
+            // 
+            this.lbl_longitud.AutoSize = true;
+            this.lbl_longitud.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_longitud.Location = new System.Drawing.Point(362, 279);
+            this.lbl_longitud.Name = "lbl_longitud";
+            this.lbl_longitud.Size = new System.Drawing.Size(13, 18);
+            this.lbl_longitud.TabIndex = 67;
+            this.lbl_longitud.Text = "-";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.lbl_longitud_inicial);
+            this.groupBox1.Controls.Add(this.lbl_tiempo);
+            this.groupBox1.Controls.Add(this.lbl_tiempo_inicial);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lbl_longitud);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lbl_h);
+            this.groupBox1.Location = new System.Drawing.Point(21, 23);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(511, 394);
+            this.groupBox1.TabIndex = 68;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos de la Integración";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(146, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(174, 18);
+            this.label5.TabIndex = 68;
+            this.label5.Text = "Paso de integración (h):";
+            // 
+            // lbl_h
+            // 
+            this.lbl_h.AutoSize = true;
+            this.lbl_h.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_h.Location = new System.Drawing.Point(362, 57);
+            this.lbl_h.Name = "lbl_h";
+            this.lbl_h.Size = new System.Drawing.Size(39, 18);
+            this.lbl_h.TabIndex = 69;
+            this.lbl_h.Text = "0,01";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(185, 105);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 18);
+            this.label6.TabIndex = 70;
+            this.label6.Text = "Tiempo inicial (to):";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(170, 153);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(150, 18);
+            this.label7.TabIndex = 71;
+            this.label7.Text = "Longitud inicial (Xo):";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Trabajo_Practico_Final.Properties.Resources.datos1;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 54);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 55);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1300, 743);
+            this.pictureBox1.Size = new System.Drawing.Size(1320, 756);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // lbl_tiempo_inicial
+            // 
+            this.lbl_tiempo_inicial.AutoSize = true;
+            this.lbl_tiempo_inicial.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tiempo_inicial.Location = new System.Drawing.Point(362, 105);
+            this.lbl_tiempo_inicial.Name = "lbl_tiempo_inicial";
+            this.lbl_tiempo_inicial.Size = new System.Drawing.Size(17, 18);
+            this.lbl_tiempo_inicial.TabIndex = 72;
+            this.lbl_tiempo_inicial.Text = "0";
+            // 
+            // lbl_longitud_inicial
+            // 
+            this.lbl_longitud_inicial.AutoSize = true;
+            this.lbl_longitud_inicial.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_longitud_inicial.Location = new System.Drawing.Point(362, 153);
+            this.lbl_longitud_inicial.Name = "lbl_longitud_inicial";
+            this.lbl_longitud_inicial.Size = new System.Drawing.Size(17, 18);
+            this.lbl_longitud_inicial.TabIndex = 73;
+            this.lbl_longitud_inicial.Text = "0";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Trabajo_Practico_Final.Properties.Resources.ecuacion;
+            this.pictureBox2.Location = new System.Drawing.Point(149, 196);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(258, 56);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 74;
+            this.pictureBox2.TabStop = false;
             // 
             // frm_principal
             // 
@@ -711,11 +820,13 @@ namespace Trabajo_Practico_Final.Presentacion
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).EndInit();
             this.tab_rk.ResumeLayout(false);
-            this.tab_rk.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_runge_kutta)).EndInit();
             this.tab_info.ResumeLayout(false);
             this.tab_info.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -761,5 +872,14 @@ namespace Trabajo_Practico_Final.Presentacion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl_tiempo;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lbl_longitud;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_h;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lbl_longitud_inicial;
+        private System.Windows.Forms.Label lbl_tiempo_inicial;
     }
 }

@@ -72,6 +72,8 @@ namespace Trabajo_Practico_Final.Presentacion
                 dgv_simulacion.Columns.Clear();
                 tab_rk.Show();
                 dgv_runge_kutta.Columns.Clear();
+                lbl_longitud.Text = "-";
+                lbl_tiempo.Text = "-";
             }
         }
 
@@ -96,8 +98,9 @@ namespace Trabajo_Practico_Final.Presentacion
 
                 //tabla runge kutta
                 dgv_runge_kutta.DataSource = simulacion.RungeKutta.Tabla;
+                lbl_longitud.Text = (Math.Truncate(100 * simulacion.RungeKutta.Longitud) / 100).ToString() + " mts";
                 lbl_tiempo.Text = simulacion.TiempoTirada.ToString() + "  min";
-
+                
                 //formateo de tabla
                 dgv_simulacion.Columns[0].Frozen = true;
                 dgv_simulacion.Columns[1].Frozen = true;
@@ -110,7 +113,8 @@ namespace Trabajo_Practico_Final.Presentacion
 
                 tab_rk.Show();
                 dgv_runge_kutta.Rows[dgv_runge_kutta.Rows.Count-1].Cells[0].Style.BackColor = Color.LightGreen;
-                
+                dgv_runge_kutta.Rows[dgv_runge_kutta.Rows.Count - 1].Cells[1].Style.BackColor = Color.LightGreen;
+
                 /*
                 for (int i = 15; i < dgv_simulacion.Columns.Count; i++)
                 {

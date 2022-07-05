@@ -30,7 +30,8 @@ namespace Trabajo_Practico_Final.Modelo
             crearTabla();
             this.generadorRND = new Random();
             this.rungeKutta = new RungeKutta();
-            this.tiempoTirada = rungeKutta.integracionNumerica(); //calculo del tiempo de tirada (por unica vez)
+            rungeKutta.integracionNumerica(); //calculo del tiempo de tirada (por unica vez)
+            this.tiempoTirada = rungeKutta.Tiempo;
             this.indicePrimerNoDestruido = -1;
             this.listaPersonasDestruidas = new List<string> { };
 
