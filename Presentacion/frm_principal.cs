@@ -40,9 +40,14 @@ namespace Trabajo_Practico_Final.Presentacion
                 MessageBox.Show("El tiempo entre suspensiones debe ser mayor a 0.", "Generación de Simulación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            if (nud_duracion_limp.Value == 0)
+            if (nud_tiempo_entre_limp.Value == 0)
             {
-                MessageBox.Show("El tiempo de duración de la suspensión debe ser mayor a 0.", "Generación de Simulación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El tiempo entre limpiezas debe ser mayor a 0.", "Generación de Simulación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            if (nud_duracion_limp.Value >= nud_tiempo_entre_limp.Value)
+            {
+                MessageBox.Show("La duración de la limpieza debe ser menor al tiempo entre limpiezas.", "Generación de Valores", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;

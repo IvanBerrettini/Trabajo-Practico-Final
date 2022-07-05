@@ -29,12 +29,12 @@ namespace Trabajo_Practico_Final.Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_simulacion = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,13 +67,13 @@ namespace Trabajo_Practico_Final.Presentacion
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgv_simulacion = new System.Windows.Forms.DataGridView();
             this.tab_rk = new System.Windows.Forms.TabPage();
+            this.lbl_tiempo = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.dgv_runge_kutta = new System.Windows.Forms.DataGridView();
             this.tab_info = new System.Windows.Forms.TabPage();
             this.lbl_enunciado = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbl_tiempo = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tab_simulacion.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -240,11 +240,6 @@ namespace Trabajo_Practico_Final.Presentacion
             0,
             0,
             0});
-            this.nud_tiempo_entre_limp.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.nud_tiempo_entre_limp.Name = "nud_tiempo_entre_limp";
             this.nud_tiempo_entre_limp.Size = new System.Drawing.Size(100, 22);
             this.nud_tiempo_entre_limp.TabIndex = 6;
@@ -338,11 +333,6 @@ namespace Trabajo_Practico_Final.Presentacion
             0,
             0,
             0});
-            this.nud_duracion_limp.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.nud_duracion_limp.Name = "nud_duracion_limp";
             this.nud_duracion_limp.Size = new System.Drawing.Size(100, 22);
             this.nud_duracion_limp.TabIndex = 7;
@@ -388,7 +378,7 @@ namespace Trabajo_Practico_Final.Presentacion
             this.nud_total_minutos.Location = new System.Drawing.Point(279, 36);
             this.nud_total_minutos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nud_total_minutos.Maximum = new decimal(new int[] {
-            100000,
+            10000,
             0,
             0,
             0});
@@ -532,29 +522,29 @@ namespace Trabajo_Practico_Final.Presentacion
             this.dgv_simulacion.AllowUserToAddRows = false;
             this.dgv_simulacion.AllowUserToDeleteRows = false;
             this.dgv_simulacion.AllowUserToResizeRows = false;
-            dataGridViewCellStyle85.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgv_simulacion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle85;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_simulacion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dgv_simulacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle86.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle86.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            dataGridViewCellStyle86.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle86.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle86.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle86.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle86.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_simulacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle86;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_simulacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgv_simulacion.ColumnHeadersHeight = 80;
             this.dgv_simulacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle87.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle87.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle87.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle87.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle87.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle87.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle87.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_simulacion.DefaultCellStyle = dataGridViewCellStyle87;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_simulacion.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgv_simulacion.Location = new System.Drawing.Point(7, 19);
             this.dgv_simulacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv_simulacion.Name = "dgv_simulacion";
@@ -586,35 +576,65 @@ namespace Trabajo_Practico_Final.Presentacion
             this.tab_rk.Text = "Runge Kutta";
             this.tab_rk.UseVisualStyleBackColor = true;
             // 
+            // lbl_tiempo
+            // 
+            this.lbl_tiempo.AutoSize = true;
+            this.lbl_tiempo.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tiempo.Location = new System.Drawing.Point(437, 104);
+            this.lbl_tiempo.Name = "lbl_tiempo";
+            this.lbl_tiempo.Size = new System.Drawing.Size(15, 19);
+            this.lbl_tiempo.TabIndex = 66;
+            this.lbl_tiempo.Text = "-";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(18, 104);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(364, 19);
+            this.label4.TabIndex = 65;
+            this.label4.Text = "Tiempo que demora cada persona en deslizarse:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(160, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(304, 19);
+            this.label3.TabIndex = 64;
+            this.label3.Text = "Longitud de la alfombra mágica: 100 mts";
+            // 
             // dgv_runge_kutta
             // 
             this.dgv_runge_kutta.AllowUserToAddRows = false;
             this.dgv_runge_kutta.AllowUserToDeleteRows = false;
             this.dgv_runge_kutta.AllowUserToResizeRows = false;
-            dataGridViewCellStyle88.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgv_runge_kutta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle88;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_runge_kutta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgv_runge_kutta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_runge_kutta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle89.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle89.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            dataGridViewCellStyle89.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle89.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle89.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle89.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle89.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_runge_kutta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle89;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_runge_kutta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgv_runge_kutta.ColumnHeadersHeight = 30;
             this.dgv_runge_kutta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle90.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle90.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle90.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle90.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle90.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle90.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle90.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_runge_kutta.DefaultCellStyle = dataGridViewCellStyle90;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_runge_kutta.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgv_runge_kutta.Location = new System.Drawing.Point(556, 23);
             this.dgv_runge_kutta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv_runge_kutta.Name = "dgv_runge_kutta";
@@ -662,36 +682,6 @@ namespace Trabajo_Practico_Final.Presentacion
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(160, 65);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(304, 19);
-            this.label3.TabIndex = 64;
-            this.label3.Text = "Longitud de la alfombra mágica: 100 mts";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(18, 104);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(364, 19);
-            this.label4.TabIndex = 65;
-            this.label4.Text = "Tiempo que demora cada persona en deslizarse:";
-            // 
-            // lbl_tiempo
-            // 
-            this.lbl_tiempo.AutoSize = true;
-            this.lbl_tiempo.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tiempo.Location = new System.Drawing.Point(437, 104);
-            this.lbl_tiempo.Name = "lbl_tiempo";
-            this.lbl_tiempo.Size = new System.Drawing.Size(15, 19);
-            this.lbl_tiempo.TabIndex = 66;
-            this.lbl_tiempo.Text = "-";
             // 
             // frm_principal
             // 

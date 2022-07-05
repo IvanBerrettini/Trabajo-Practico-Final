@@ -186,7 +186,7 @@ namespace Trabajo_Practico_Final.Modelo
                             tiempoUltimaPersonaEnTerminar = filaAnterior.PersonasDeslizandose[indiceUltimaPersonaEnTerminar].FinTirada;
 
                         fila.FinLimpieza = tiempoUltimaPersonaEnTerminar + duracionLimpieza;
-                        fila.ProximaSuspension = fila.FinLimpieza + tiempoEntreSuspensiones; //si se encuentra en limpieza, se posponen la suspension
+                        fila.ProximaSuspension = fila.FinLimpieza + tiempoEntreSuspensiones; //se pospone la suspension
 
                         fila.EstadoAlfombra = "Suspendida";
                         break;
