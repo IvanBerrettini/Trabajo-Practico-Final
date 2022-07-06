@@ -51,8 +51,8 @@ namespace Trabajo_Practico_Final.Modelo
 
             //inicializacion
             fila.Evento = "inicializacion";
-            fila.RndLlegada = generadorRND.NextDouble();
-            fila.TiempoEntreLlegadas = limiteA + fila.RndLlegada * (limiteB - limiteA);
+            fila.RndLlegada = Math.Truncate(100 * generadorRND.NextDouble()) / 100;
+            fila.TiempoEntreLlegadas = Math.Truncate(100 * limiteA + fila.RndLlegada * (limiteB - limiteA)) / 100;
             fila.ProximaLlegada = fila.Reloj + fila.TiempoEntreLlegadas;
             fila.ProximaSuspension = fila.Reloj + tiempoEntreSuspensiones;
             fila.ProximaLimpieza = fila.Reloj + tiempoEntreLimpiezas;
@@ -88,8 +88,8 @@ namespace Trabajo_Practico_Final.Modelo
                     case "llegada_persona":
                         contadorLlegadas++;
                         fila.Reloj = filaAnterior.ProximaLlegada;
-                        fila.RndLlegada = generadorRND.NextDouble();
-                        fila.TiempoEntreLlegadas = limiteA + fila.RndLlegada * (limiteB - limiteA);
+                        fila.RndLlegada = Math.Truncate(100 * generadorRND.NextDouble()) / 100;
+                        fila.TiempoEntreLlegadas = Math.Truncate(100 * limiteA + fila.RndLlegada * (limiteB - limiteA)) / 100;
                         fila.ProximaLlegada = fila.Reloj + fila.TiempoEntreLlegadas;
 
                         Persona persona;
@@ -163,7 +163,7 @@ namespace Trabajo_Practico_Final.Modelo
                                 fila.PersonasDeslizandose.Add(fila.Personas[i]);
                                 fila.Personas[i].Estado = "D ";
                                 fila.Personas[i].HoraLlegada = -1;
-                                fila.Personas[i].EsperaEnCola = fila.Reloj - filaAnterior.Personas[i].HoraLlegada;
+                                fila.Personas[i].EsperaEnCola = Math.Truncate(100 * (fila.Reloj - filaAnterior.Personas[i].HoraLlegada)) /100;
                                 fila.Personas[i].FinTirada = fila.Reloj + this.tiempoTirada;
 
                                 if (fila.Personas[i].EsperaEnCola > fila.EsperaMaximaCola)
@@ -209,7 +209,7 @@ namespace Trabajo_Practico_Final.Modelo
                                 fila.PersonasDeslizandose.Add(fila.Personas[i]);
                                 fila.Personas[i].Estado = "D ";
                                 fila.Personas[i].HoraLlegada = -1;
-                                fila.Personas[i].EsperaEnCola = fila.Reloj - filaAnterior.Personas[i].HoraLlegada;
+                                fila.Personas[i].EsperaEnCola = Math.Truncate(100 * (fila.Reloj - filaAnterior.Personas[i].HoraLlegada)) / 100;
                                 fila.Personas[i].FinTirada = fila.Reloj + this.tiempoTirada;
 
                                 if (fila.Personas[i].EsperaEnCola > fila.EsperaMaximaCola)
@@ -256,7 +256,7 @@ namespace Trabajo_Practico_Final.Modelo
         {
             List<string> listaFila = new List<string> {
                 fila.Evento,
-                (Math.Truncate(1000 * fila.Reloj) / 1000).ToString(),
+                fila.Reloj.ToString(),
                 beautify(fila.RndLlegada),
                 beautify(fila.TiempoEntreLlegadas),
                 beautify(fila.ProximaLlegada),
@@ -269,40 +269,19 @@ namespace Trabajo_Practico_Final.Modelo
                 fila.EstadoAlfombra,
                 fila.Cola.ToString(),
                 fila.ColaMaxima.ToString(),
-                (Math.Truncate(1000 * fila.EsperaMaximaCola) / 1000).ToString()
+                fila.EsperaMaximaCola.ToString()
             };
 
-            if (!mostrar)
+            StringBuilder cadenaPersonas = new StringBuilder("");
+            if (this.indicePrimerNoDestruido != -1)
             {
-                if (this.indicePrimerNoDestruido != -1)
+                for (int i = this.indicePrimerNoDestruido; i < fila.Personas.Count; i++)
                 {
-                    for (int i = this.indicePrimerNoDestruido; i < fila.Personas.Count; i++)
-                    {
-                        this.tabla.Columns.Add("Persona " + fila.Personas[i].Id.ToString() + " |Estado| |HoraLlegada| |EsperaEnCola|");
-                        listaFila.Add(fila.Personas[i].armarStringPersona());
-                        this.mostrar = true;
-                    }
+                    if (!fila.Personas[i].Destruido)
+                        cadenaPersonas.Append("{" + fila.Personas[i].armarStringPersona() + "}".PadRight(10, ' '));
                 }
             }
-            else
-            {
-                if (fila.Evento.Contains("llegada_persona"))
-                {
-                    this.tabla.Columns.Add("Persona " + fila.Personas[fila.Personas.Count - 1].Id.ToString() + " |Estado| |HoraLlegada| |EsperaEnCola|");
-                }
-
-                listaFila = listaFila.Concat(this.listaPersonasDestruidas).ToList();
-
-                for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)
-                {
-                    listaFila.Add(fila.Personas[i].armarStringPersona());
-
-                    if (fila.Personas[i].Destruido)
-                    {
-                        this.listaPersonasDestruidas.Add("");
-                    }
-                }
-            }
+            listaFila.Add(cadenaPersonas.ToString());
             this.tabla.Rows.Add(listaFila.ToArray());
         }
 
@@ -344,7 +323,8 @@ namespace Trabajo_Practico_Final.Modelo
                 "Estado Alfombra",
                 "Cola Alfombra",
                 "Cola máxima Alfombra",
-                "Espera máxima en cola"
+                "Espera máxima en cola",
+                "Personas - Estado|HoraLlegada|EsperaEnCola"
             };
 
             for (int i = 0; i < columnas.Length; i++)
@@ -356,7 +336,7 @@ namespace Trabajo_Practico_Final.Modelo
         private string beautify(double numero)
         {
             if (numero == 0 || numero == -1 || numero == double.MaxValue) return "";
-            return (Math.Truncate(1000 * numero) / 1000).ToString();
+            return numero.ToString();
         }
 
         public DataTable Tabla { get => tabla; set => tabla = value; }

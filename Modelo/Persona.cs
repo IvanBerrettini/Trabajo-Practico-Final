@@ -51,16 +51,16 @@ namespace Trabajo_Practico_Final.Modelo
             {
                 return "XXXX";
             }
-            string cadena = "  "+ this.estado + "  ";
+            string cadena = "(" + this.id + ")  " + this.estado + "  ";
             if (this.horaLlegada == -1)
-                cadena += "|        -        |";
+                cadena += "|       -       |";
             else
-                cadena += "|  " + (Math.Truncate(1000 * this.horaLlegada) / 1000).ToString() + "  |";
+                cadena += "|  " + this.horaLlegada.ToString() + "  |";
 
             if (this.esperaEnCola == -1)
                 cadena += "       -     ";
             else
-                cadena += "  " + (Math.Truncate(1000 * this.esperaEnCola) / 1000).ToString();
+                cadena += "  " + this.esperaEnCola.ToString() + "  ";
             return cadena;
         }
 
