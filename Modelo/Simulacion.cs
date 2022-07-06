@@ -17,7 +17,8 @@ namespace Trabajo_Practico_Final.Modelo
         private RungeKutta rungeKutta;
         private double tiempoTirada;
         private int indicePrimerNoDestruido;
-        private bool mostrar = false;
+        private int indicePrimerEsperando;
+        private bool mostrar;
         private List<string> listaPersonasDestruidas;
         private int colaMaxima;
         private double esperaMaximaCola;
@@ -33,6 +34,8 @@ namespace Trabajo_Practico_Final.Modelo
             rungeKutta.integracionNumerica(); //calculo del tiempo de tirada (por unica vez)
             this.tiempoTirada = rungeKutta.Tiempo;
             this.indicePrimerNoDestruido = -1;
+            this.indicePrimerEsperando = -1;
+            this.mostrar = false;
             this.listaPersonasDestruidas = new List<string> { };
 
             Fila fila = new Fila();
@@ -59,11 +62,15 @@ namespace Trabajo_Practico_Final.Modelo
 
             while (fila.Reloj <= this.totalMinutos)
             {
-                indiceProximaPersonaATerminar = filaAnterior.proximaPersonaATerminar();
-                if (indiceProximaPersonaATerminar == -1) // No hay personas deslizandose
+                if (filaAnterior.PersonasDeslizandose.Count == 0)
                     tiempoProximaPersonaATerminar = double.MaxValue;
                 else
-                    tiempoProximaPersonaATerminar = filaAnterior.PersonasDeslizandose[indiceProximaPersonaATerminar].FinTirada;
+                    tiempoProximaPersonaATerminar = filaAnterior.PersonasDeslizandose[0].FinTirada;
+
+                if (filaAnterior.PersonasDeslizandose.Count == 0)
+                    indiceUltimaPersonaEnTerminar = -1;
+                else
+                    indiceUltimaPersonaEnTerminar = filaAnterior.PersonasDeslizandose.Count - 1;
 
                 //borrar el tiempo de espera en cola a cada persona que esta deslizandose (ya no lo necesito)
                 if (indicePrimerNoDestruido != -1 && (filaAnterior.Evento == "fin_suspension" || filaAnterior.Evento == "fin_limpieza"))
@@ -106,14 +113,18 @@ namespace Trabajo_Practico_Final.Modelo
                         break;
 
                     case "fin_tirada":
-                        fila.Evento = "fin_tirada_" + fila.PersonasDeslizandose[indiceProximaPersonaATerminar].Id.ToString();
+                        fila.Evento = "fin_tirada_" + fila.PersonasDeslizandose[0].Id.ToString();
                         fila.Reloj = tiempoProximaPersonaATerminar;
                         fila.RndLlegada = 0;
                         fila.TiempoEntreLlegadas = 0;
                         fila.TiempoTirada = 0;
-                        fila.PersonasDeslizandose[indiceProximaPersonaATerminar].Destruido = true;
-                        fila.PersonasDeslizandose.RemoveAt(indiceProximaPersonaATerminar); //actualizar lista de personas deslizandose
+                        fila.PersonasDeslizandose[0].Destruido = true;
+                        fila.PersonasDeslizandose.RemoveAt(0); //actualizar lista de personas deslizandose
                         fila.FinTiradas = armarCadenaTiradas(fila.PersonasDeslizandose);
+
+                        indicePrimerNoDestruido++;
+                        //if (fila.Reloj < this.minutoDesde)
+                          //  fila.Personas.RemoveAt(indiceProximaPersonaATerminar);
 
                         break;
 
@@ -128,7 +139,7 @@ namespace Trabajo_Practico_Final.Modelo
                         if (fila.ProximaSuspension == fila.ProximaLimpieza)
                             fila.ProximaSuspension = fila.ProximaSuspension + tiempoEntreSuspensiones;
 
-                        indiceUltimaPersonaEnTerminar = filaAnterior.ultimaPersonaEnTerminar();
+                        
                         if (indiceUltimaPersonaEnTerminar == -1) // No hay personas deslizandose
                             tiempoUltimaPersonaEnTerminar = fila.Reloj;
                         else
@@ -145,7 +156,7 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.TiempoEntreLlegadas = 0;
                         fila.TiempoTirada = this.tiempoTirada;
 
-                        for (int i = 0; i < fila.Personas.Count; i++)
+                        for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)
                         {
                             if (fila.Personas[i].Estado == "ET")
                             {
@@ -154,18 +165,9 @@ namespace Trabajo_Practico_Final.Modelo
                                 fila.Personas[i].HoraLlegada = -1;
                                 fila.Personas[i].EsperaEnCola = fila.Reloj - filaAnterior.Personas[i].HoraLlegada;
                                 fila.Personas[i].FinTirada = fila.Reloj + this.tiempoTirada;
-                            }
-                            if (fila.Personas[i].EsperaEnCola != -1)
-                            {
-                                if (fila.EsperaMaximaCola != 0)
-                                {
-                                    if (fila.Personas[i].EsperaEnCola >= fila.EsperaMaximaCola)
-                                        fila.EsperaMaximaCola = fila.Personas[i].EsperaEnCola;
-                                }
-                                else
-                                {
+
+                                if (fila.Personas[i].EsperaEnCola > fila.EsperaMaximaCola)
                                     fila.EsperaMaximaCola = fila.Personas[i].EsperaEnCola;
-                                }
                             }
                         }
                         fila.FinTiradas = armarCadenaTiradas(fila.PersonasDeslizandose);
@@ -182,7 +184,6 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.TiempoTirada = 0;
                         fila.ProximaLimpieza = fila.Reloj + tiempoEntreLimpiezas;
 
-                        indiceUltimaPersonaEnTerminar = filaAnterior.ultimaPersonaEnTerminar();
                         if (indiceUltimaPersonaEnTerminar == -1) // No hay personas deslizandose
                             tiempoUltimaPersonaEnTerminar = fila.Reloj;
                         else
@@ -201,7 +202,7 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.TiempoEntreLlegadas = 0;
                         fila.TiempoTirada = this.tiempoTirada;
 
-                        for (int i = 0; i < fila.Personas.Count; i++)
+                        for (int i = indicePrimerNoDestruido; i < fila.Personas.Count; i++)
                         {
                             if (fila.Personas[i].Estado == "ET")
                             {
@@ -210,19 +211,10 @@ namespace Trabajo_Practico_Final.Modelo
                                 fila.Personas[i].HoraLlegada = -1;
                                 fila.Personas[i].EsperaEnCola = fila.Reloj - filaAnterior.Personas[i].HoraLlegada;
                                 fila.Personas[i].FinTirada = fila.Reloj + this.tiempoTirada;
-                            }
-                            if (fila.Personas[i].EsperaEnCola != -1)
-                            {
-                                if (fila.EsperaMaximaCola != 0)
-                                {
-                                    if (fila.Personas[i].EsperaEnCola >= fila.EsperaMaximaCola)
-                                        fila.EsperaMaximaCola = fila.Personas[i].EsperaEnCola;
-                                }
-                                else
-                                {
+
+                                if (fila.Personas[i].EsperaEnCola > fila.EsperaMaximaCola)
                                     fila.EsperaMaximaCola = fila.Personas[i].EsperaEnCola;
-                                }
-                            }
+                            }                            
                         }
                         fila.FinTiradas = armarCadenaTiradas(fila.PersonasDeslizandose);
                         fila.FinLimpieza = double.MaxValue;
@@ -243,6 +235,7 @@ namespace Trabajo_Practico_Final.Modelo
                     agregarFila(fila, indicePrimerNoDestruido);
                     contadorFilas++;
                 }
+                
             }
             //metricas
             this.colaMaxima = fila.ColaMaxima;
@@ -307,7 +300,6 @@ namespace Trabajo_Practico_Final.Modelo
                     if (fila.Personas[i].Destruido)
                     {
                         this.listaPersonasDestruidas.Add("");
-                        this.indicePrimerNoDestruido++;
                     }
                 }
             }
