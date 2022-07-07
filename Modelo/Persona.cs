@@ -57,7 +57,7 @@ namespace Trabajo_Practico_Final.Modelo
                 cadena += "         ";
             else
                 cadena += this.esperaEnCola.ToString().PadRight(9, ' ');
-            return cadena;
+            return "{" + cadena + "}".PadRight(5, ' ');
         }
 
         public int Id { get => id; set => id = value; }
