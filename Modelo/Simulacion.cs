@@ -16,7 +16,6 @@ namespace Trabajo_Practico_Final.Modelo
         private Random generadorRND;
         private RungeKutta rungeKutta;
         private double tiempoTirada;
-        private int indicePrimerNoDestruido;
         private int colaMaxima;
         private double esperaMaximaCola;
         private string objetosTemporales;
@@ -33,7 +32,6 @@ namespace Trabajo_Practico_Final.Modelo
             this.rungeKutta = new RungeKutta();
             rungeKutta.integracionNumerica(); //calculo del tiempo de tirada (por unica vez)
             this.tiempoTirada = rungeKutta.Tiempo;
-            this.indicePrimerNoDestruido = -1;
             this.objetosTemporales = "";
             this.personasDeslizandose = new List<Persona> { };
             this.personasEsperando = new List<Persona> { };
@@ -72,9 +70,9 @@ namespace Trabajo_Practico_Final.Modelo
                     indiceUltimaPersonaEnTerminar = this.personasDeslizandose.Count - 1;
 
                 //borrar el tiempo de espera en cola a cada persona que esta deslizandose (ya no lo necesito)
-                if (indicePrimerNoDestruido != -1 && (filaAnterior.Evento == "fin_suspension" || filaAnterior.Evento == "fin_limpieza"))
+                if (filaAnterior.Evento == "fin_suspension" || filaAnterior.Evento == "fin_limpieza")
                 {
-                    for (int i = indicePrimerNoDestruido; i < this.personasDeslizandose.Count; i++)
+                    for (int i = 0; i < this.personasDeslizandose.Count; i++)
                     {
                         this.personasDeslizandose[i].EsperaEnCola = -1;
                     }
@@ -121,8 +119,6 @@ namespace Trabajo_Practico_Final.Modelo
                         this.objetosTemporales = this.objetosTemporales.Remove(0, 37);
                         this.personasDeslizandose[0].Destruido = true;
                         this.personasDeslizandose.RemoveAt(0); //eliminarlo de la lista de personas deslizandose
-
-                        indicePrimerNoDestruido++;
 
                         break;
 
