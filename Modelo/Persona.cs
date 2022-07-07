@@ -47,20 +47,16 @@ namespace Trabajo_Practico_Final.Modelo
 
         public string armarStringPersona()
         {
-            if (this.destruido)
-            {
-                return "XXXX";
-            }
-            string cadena = "(" + this.id + ")  " + this.estado + "  ";
+            string cadena = ("(" + this.id + ") " + this.estado).PadRight(9, ' ') + "| ";
             if (this.horaLlegada == -1)
-                cadena += "|       -       |";
+                cadena += "         | ";
             else
-                cadena += "|  " + this.horaLlegada.ToString() + "  |";
+                cadena += this.horaLlegada.ToString().PadRight(9, ' ') + "| ";
 
             if (this.esperaEnCola == -1)
-                cadena += "       -     ";
+                cadena += "         ";
             else
-                cadena += "  " + this.esperaEnCola.ToString() + "  ";
+                cadena += this.esperaEnCola.ToString().PadRight(9, ' ');
             return cadena;
         }
 

@@ -29,12 +29,12 @@ namespace Trabajo_Practico_Final.Presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_simulacion = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -67,22 +67,22 @@ namespace Trabajo_Practico_Final.Presentacion
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgv_simulacion = new System.Windows.Forms.DataGridView();
             this.tab_rk = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lbl_longitud_inicial = new System.Windows.Forms.Label();
             this.lbl_tiempo = new System.Windows.Forms.Label();
+            this.lbl_tiempo_inicial = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lbl_longitud = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_h = new System.Windows.Forms.Label();
             this.dgv_runge_kutta = new System.Windows.Forms.DataGridView();
             this.tab_info = new System.Windows.Forms.TabPage();
             this.lbl_enunciado = new System.Windows.Forms.Label();
-            this.lbl_longitud = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lbl_h = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbl_tiempo_inicial = new System.Windows.Forms.Label();
-            this.lbl_longitud_inicial = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tab_simulacion.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -100,11 +100,11 @@ namespace Trabajo_Practico_Final.Presentacion
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).BeginInit();
             this.tab_rk.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_runge_kutta)).BeginInit();
             this.tab_info.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -389,7 +389,7 @@ namespace Trabajo_Practico_Final.Presentacion
             this.nud_total_minutos.Location = new System.Drawing.Point(279, 36);
             this.nud_total_minutos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nud_total_minutos.Maximum = new decimal(new int[] {
-            50000,
+            100000,
             0,
             0,
             0});
@@ -533,29 +533,29 @@ namespace Trabajo_Practico_Final.Presentacion
             this.dgv_simulacion.AllowUserToAddRows = false;
             this.dgv_simulacion.AllowUserToDeleteRows = false;
             this.dgv_simulacion.AllowUserToResizeRows = false;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgv_simulacion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_simulacion.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_simulacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_simulacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_simulacion.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgv_simulacion.ColumnHeadersHeight = 80;
             this.dgv_simulacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_simulacion.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Monospac821 BT", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_simulacion.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgv_simulacion.Location = new System.Drawing.Point(7, 19);
             this.dgv_simulacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv_simulacion.Name = "dgv_simulacion";
@@ -585,6 +585,46 @@ namespace Trabajo_Practico_Final.Presentacion
             this.tab_rk.Text = "Runge Kutta";
             this.tab_rk.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.lbl_longitud_inicial);
+            this.groupBox1.Controls.Add(this.lbl_tiempo);
+            this.groupBox1.Controls.Add(this.lbl_tiempo_inicial);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lbl_longitud);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lbl_h);
+            this.groupBox1.Location = new System.Drawing.Point(21, 23);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(511, 394);
+            this.groupBox1.TabIndex = 68;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Datos de la Integración";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Trabajo_Practico_Final.Properties.Resources.ecuacion;
+            this.pictureBox2.Location = new System.Drawing.Point(149, 196);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(258, 56);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 74;
+            this.pictureBox2.TabStop = false;
+            // 
+            // lbl_longitud_inicial
+            // 
+            this.lbl_longitud_inicial.AutoSize = true;
+            this.lbl_longitud_inicial.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_longitud_inicial.Location = new System.Drawing.Point(362, 153);
+            this.lbl_longitud_inicial.Name = "lbl_longitud_inicial";
+            this.lbl_longitud_inicial.Size = new System.Drawing.Size(17, 18);
+            this.lbl_longitud_inicial.TabIndex = 73;
+            this.lbl_longitud_inicial.Text = "0";
+            // 
             // lbl_tiempo
             // 
             this.lbl_tiempo.AutoSize = true;
@@ -594,6 +634,16 @@ namespace Trabajo_Practico_Final.Presentacion
             this.lbl_tiempo.Size = new System.Drawing.Size(13, 18);
             this.lbl_tiempo.TabIndex = 66;
             this.lbl_tiempo.Text = "-";
+            // 
+            // lbl_tiempo_inicial
+            // 
+            this.lbl_tiempo_inicial.AutoSize = true;
+            this.lbl_tiempo_inicial.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tiempo_inicial.Location = new System.Drawing.Point(362, 105);
+            this.lbl_tiempo_inicial.Name = "lbl_tiempo_inicial";
+            this.lbl_tiempo_inicial.Size = new System.Drawing.Size(17, 18);
+            this.lbl_tiempo_inicial.TabIndex = 72;
+            this.lbl_tiempo_inicial.Text = "0";
             // 
             // label4
             // 
@@ -605,6 +655,16 @@ namespace Trabajo_Practico_Final.Presentacion
             this.label4.TabIndex = 65;
             this.label4.Text = "Tiempo en deslizarse final (t):";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(170, 153);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(150, 18);
+            this.label7.TabIndex = 71;
+            this.label7.Text = "Longitud inicial (Xo):";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -615,35 +675,75 @@ namespace Trabajo_Practico_Final.Presentacion
             this.label3.TabIndex = 64;
             this.label3.Text = "Longitud de la alfombra final (X):";
             // 
+            // lbl_longitud
+            // 
+            this.lbl_longitud.AutoSize = true;
+            this.lbl_longitud.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_longitud.Location = new System.Drawing.Point(362, 279);
+            this.lbl_longitud.Name = "lbl_longitud";
+            this.lbl_longitud.Size = new System.Drawing.Size(13, 18);
+            this.lbl_longitud.TabIndex = 67;
+            this.lbl_longitud.Text = "-";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(185, 105);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 18);
+            this.label6.TabIndex = 70;
+            this.label6.Text = "Tiempo inicial (to):";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(146, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(174, 18);
+            this.label5.TabIndex = 68;
+            this.label5.Text = "Paso de integración (h):";
+            // 
+            // lbl_h
+            // 
+            this.lbl_h.AutoSize = true;
+            this.lbl_h.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_h.Location = new System.Drawing.Point(362, 57);
+            this.lbl_h.Name = "lbl_h";
+            this.lbl_h.Size = new System.Drawing.Size(39, 18);
+            this.lbl_h.TabIndex = 69;
+            this.lbl_h.Text = "0,01";
+            // 
             // dgv_runge_kutta
             // 
             this.dgv_runge_kutta.AllowUserToAddRows = false;
             this.dgv_runge_kutta.AllowUserToDeleteRows = false;
             this.dgv_runge_kutta.AllowUserToResizeRows = false;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgv_runge_kutta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgv_runge_kutta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv_runge_kutta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_runge_kutta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_runge_kutta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_runge_kutta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgv_runge_kutta.ColumnHeadersHeight = 30;
             this.dgv_runge_kutta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_runge_kutta.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_runge_kutta.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgv_runge_kutta.Location = new System.Drawing.Point(556, 23);
             this.dgv_runge_kutta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgv_runge_kutta.Name = "dgv_runge_kutta";
@@ -682,76 +782,6 @@ namespace Trabajo_Practico_Final.Presentacion
             this.lbl_enunciado.TabIndex = 2;
             this.lbl_enunciado.Text = "Enunciado Ejercicio 229:";
             // 
-            // lbl_longitud
-            // 
-            this.lbl_longitud.AutoSize = true;
-            this.lbl_longitud.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_longitud.Location = new System.Drawing.Point(362, 279);
-            this.lbl_longitud.Name = "lbl_longitud";
-            this.lbl_longitud.Size = new System.Drawing.Size(13, 18);
-            this.lbl_longitud.TabIndex = 67;
-            this.lbl_longitud.Text = "-";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.pictureBox2);
-            this.groupBox1.Controls.Add(this.lbl_longitud_inicial);
-            this.groupBox1.Controls.Add(this.lbl_tiempo);
-            this.groupBox1.Controls.Add(this.lbl_tiempo_inicial);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.lbl_longitud);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.lbl_h);
-            this.groupBox1.Location = new System.Drawing.Point(21, 23);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(511, 394);
-            this.groupBox1.TabIndex = 68;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Datos de la Integración";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(146, 57);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(174, 18);
-            this.label5.TabIndex = 68;
-            this.label5.Text = "Paso de integración (h):";
-            // 
-            // lbl_h
-            // 
-            this.lbl_h.AutoSize = true;
-            this.lbl_h.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_h.Location = new System.Drawing.Point(362, 57);
-            this.lbl_h.Name = "lbl_h";
-            this.lbl_h.Size = new System.Drawing.Size(39, 18);
-            this.lbl_h.TabIndex = 69;
-            this.lbl_h.Text = "0,01";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(185, 105);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(135, 18);
-            this.label6.TabIndex = 70;
-            this.label6.Text = "Tiempo inicial (to):";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(170, 153);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(150, 18);
-            this.label7.TabIndex = 71;
-            this.label7.Text = "Longitud inicial (Xo):";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Trabajo_Practico_Final.Properties.Resources.datos1;
@@ -761,36 +791,6 @@ namespace Trabajo_Practico_Final.Presentacion
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // lbl_tiempo_inicial
-            // 
-            this.lbl_tiempo_inicial.AutoSize = true;
-            this.lbl_tiempo_inicial.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tiempo_inicial.Location = new System.Drawing.Point(362, 105);
-            this.lbl_tiempo_inicial.Name = "lbl_tiempo_inicial";
-            this.lbl_tiempo_inicial.Size = new System.Drawing.Size(17, 18);
-            this.lbl_tiempo_inicial.TabIndex = 72;
-            this.lbl_tiempo_inicial.Text = "0";
-            // 
-            // lbl_longitud_inicial
-            // 
-            this.lbl_longitud_inicial.AutoSize = true;
-            this.lbl_longitud_inicial.Font = new System.Drawing.Font("Arial", 9.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_longitud_inicial.Location = new System.Drawing.Point(362, 153);
-            this.lbl_longitud_inicial.Name = "lbl_longitud_inicial";
-            this.lbl_longitud_inicial.Size = new System.Drawing.Size(17, 18);
-            this.lbl_longitud_inicial.TabIndex = 73;
-            this.lbl_longitud_inicial.Text = "0";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Trabajo_Practico_Final.Properties.Resources.ecuacion;
-            this.pictureBox2.Location = new System.Drawing.Point(149, 196);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(258, 56);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 74;
-            this.pictureBox2.TabStop = false;
             // 
             // frm_principal
             // 
@@ -820,13 +820,13 @@ namespace Trabajo_Practico_Final.Presentacion
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_simulacion)).EndInit();
             this.tab_rk.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_runge_kutta)).EndInit();
             this.tab_info.ResumeLayout(false);
             this.tab_info.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }

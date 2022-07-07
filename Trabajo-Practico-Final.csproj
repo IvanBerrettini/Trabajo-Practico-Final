@@ -49,6 +49,12 @@
     <Compile Include="Modelo\Persona.cs" />
     <Compile Include="Modelo\RungeKutta.cs" />
     <Compile Include="Modelo\Simulacion.cs" />
+    <Compile Include="Presentacion\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\frm_principal.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -94,7 +94,7 @@ namespace Trabajo_Practico_Final.Presentacion
 
                 //metricas
                 lbl_cola_max.Text = simulacion.ColaMaxima.ToString();
-                lbl_espera_max.Text = (Math.Truncate(1000 * simulacion.EsperaMaximaCola) / 1000).ToString() + " min";
+                lbl_espera_max.Text = simulacion.EsperaMaximaCola.ToString() + " min";
 
                 //tabla runge kutta
                 dgv_runge_kutta.DataSource = simulacion.RungeKutta.Tabla;
