@@ -18,7 +18,7 @@ namespace Trabajo_Practico_Final.Modelo
         private double tiempoTirada;
         private int colaMaxima;
         private double esperaMaximaCola;
-        private string objetosTemporales;
+        private StringBuilder objetosTemporales;
         private List<Persona> personasDeslizandose;
         private List<Persona> personasEsperando;
 
@@ -32,7 +32,7 @@ namespace Trabajo_Practico_Final.Modelo
             this.rungeKutta = new RungeKutta();
             rungeKutta.integracionNumerica(); //calculo del tiempo de tirada (por unica vez)
             this.tiempoTirada = rungeKutta.Tiempo;
-            this.objetosTemporales = "";
+            this.objetosTemporales = new StringBuilder("");
             this.personasDeslizandose = new List<Persona> { };
             this.personasEsperando = new List<Persona> { };
 
@@ -103,9 +103,9 @@ namespace Trabajo_Practico_Final.Modelo
                             fila.TiempoTirada = this.tiempoTirada;
                             persona = new Persona(contadorLlegadas, fila.Reloj + fila.TiempoTirada);
                             this.personasDeslizandose.Add(persona); //actualizar lista de personas deslizandose
-                            fila.FinTiradas += armarStringTirada(persona);
+                            fila.FinTiradas.Append(armarStringTirada(persona));
                         }
-                        this.objetosTemporales += persona.armarStringPersona();
+                        this.objetosTemporales.Append(persona.armarStringPersona());
                         fila.Evento = "llegada_persona_" + persona.Id.ToString();
                         break;
 
@@ -160,8 +160,8 @@ namespace Trabajo_Practico_Final.Modelo
                             if (this.personasEsperando[i].EsperaEnCola > fila.EsperaMaximaCola)
                                 fila.EsperaMaximaCola = this.personasEsperando[i].EsperaEnCola;
 
-                            fila.FinTiradas += armarStringTirada(this.personasEsperando[i]);
-                            this.objetosTemporales += this.personasEsperando[i].armarStringPersona();
+                            fila.FinTiradas.Append(armarStringTirada(this.personasEsperando[i]));
+                            this.objetosTemporales.Append(this.personasEsperando[i].armarStringPersona());
                             this.personasDeslizandose.Add(this.personasEsperando[i]);
                         }
                         this.personasEsperando.Clear();
@@ -196,7 +196,7 @@ namespace Trabajo_Practico_Final.Modelo
                         fila.TiempoEntreLlegadas = 0;
                         fila.TiempoTirada = this.tiempoTirada;
 
-                        this.objetosTemporales = ""; //reiniciamos la cadena para actualizar los estados
+                        this.objetosTemporales = this.objetosTemporales.Clear(); //reiniciamos la cadena para actualizar los estados
 
                         for (int i = 0; i < this.personasEsperando.Count; i++)
                         {
@@ -209,8 +209,8 @@ namespace Trabajo_Practico_Final.Modelo
                             if (this.personasEsperando[i].EsperaEnCola > fila.EsperaMaximaCola)
                                 fila.EsperaMaximaCola = this.personasEsperando[i].EsperaEnCola;
 
-                            fila.FinTiradas += armarStringTirada(this.personasEsperando[i]);
-                            this.objetosTemporales += this.personasEsperando[i].armarStringPersona();
+                            fila.FinTiradas.Append(armarStringTirada(this.personasEsperando[i]));
+                            this.objetosTemporales.Append(this.personasEsperando[i].armarStringPersona());
                             this.personasDeslizandose.Add(this.personasEsperando[i]);
                         }
                         this.personasEsperando.Clear();
@@ -256,7 +256,7 @@ namespace Trabajo_Practico_Final.Modelo
                 beautify(fila.TiempoEntreLlegadas),
                 beautify(fila.ProximaLlegada),
                 beautify(fila.TiempoTirada),
-                fila.FinTiradas,
+                fila.FinTiradas.ToString(),
                 beautify(fila.ProximaSuspension),
                 beautify(fila.FinSuspension),
                 beautify(fila.ProximaLimpieza),
@@ -267,7 +267,7 @@ namespace Trabajo_Practico_Final.Modelo
                 fila.EsperaMaximaCola.ToString()
             };
 
-            listaFila.Add(this.objetosTemporales);
+            listaFila.Add(this.objetosTemporales.ToString());
             this.tabla.Rows.Add(listaFila.ToArray());
         }
 
@@ -340,7 +340,7 @@ namespace Trabajo_Practico_Final.Modelo
         private double tiempoEntreLlegadas;
         private double proximaLlegada;
         private double tiempoTirada;
-        private string finTiradas;
+        private StringBuilder finTiradas;
         private double proximaSuspension;
         private double finSuspension;
         private double proximaLimpieza;
@@ -353,7 +353,7 @@ namespace Trabajo_Practico_Final.Modelo
         public Fila()
         {
             this.reloj = 0;
-            this.finTiradas = "";
+            this.finTiradas = new StringBuilder("");
             this.finSuspension = double.MaxValue;
             this.finLimpieza = double.MaxValue;
             this.alfombraDisponible = true;
@@ -375,7 +375,7 @@ namespace Trabajo_Practico_Final.Modelo
         public double TiempoEntreLlegadas { get => tiempoEntreLlegadas; set => tiempoEntreLlegadas = value; }
         public double ProximaLlegada { get => proximaLlegada; set => proximaLlegada = value; }
         public double TiempoTirada { get => tiempoTirada; set => tiempoTirada = value; }
-        public string FinTiradas { get => finTiradas; set => finTiradas = value; }
+        public StringBuilder FinTiradas { get => finTiradas; set => finTiradas = value; }
         public double ProximaSuspension { get => proximaSuspension; set => proximaSuspension = value; }
         public double FinSuspension { get => finSuspension; set => finSuspension = value; }
         public double ProximaLimpieza { get => proximaLimpieza; set => proximaLimpieza = value; }
